@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Paylocity.CodeExam.App.Models.PremiumQuote>
+
+<h3>My Favorite DOTA Heroes</h3>
+<ul>
+    @foreach (var p in Model)
+    {
+        <li>@string.Format("{0} {1}", p.Name, p.Type)</li>
+    }
+</ul>  

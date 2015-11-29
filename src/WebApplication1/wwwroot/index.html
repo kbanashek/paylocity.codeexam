@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html ng-app="paylocityapp">
+<head>
+    <meta charset="utf-8" />
+    <title>paylocityapp</title>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/premiumController.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href="css/site.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h2 class="headerTitle">Paylocity.CodeExam.App</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+        <div class="bodyContent" ng-controller="premiumController">
+
+            <div class="row ">
+                <h2>Premium Costs</h2><hr />
+                <form role="form" name="registerForm" class="form-inline well">
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" class="form-control" id="firstName"
+                               ng-model="person.FirstName"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" class="form-control" id="lastName"
+                               ng-model="person.LastName"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        &nbsp;
+                        <div class="checkbox" ng-show="!employeeExists">
+                            <label>
+                                <input type="checkbox" ng-model="person.IsEmployee"> Is Employee
+                            </label>
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        <button type="submit" class="btn btn-default"
+                                ng-click="addPerson(person)"
+                                ng-disabled="registerForm.$invalid">
+                            Add Employee
+                        </button>
+                        <button type="submit" class="btn btn-default"
+                                ng-click="reinitializeSession(person)">
+                            Reinitialize
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <table class="table body-content">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Is Employee</th>
+                        <th>Premium Amount Paid Per Paycheck</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="coveredParticipant in coveredParticipants">
+                        <td>{{coveredParticipant.ID}}</td>
+                        <td>{{coveredParticipant.FirstName}}</td>
+                        <td>{{coveredParticipant.LastName}}</td>
+                        <td>{{coveredParticipant.IsEmployee}}</td>
+                        <td>{{coveredParticipant.Premium | currency}}</td>
+                        <td>{{coveredParticipant.Note}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr />
+        <footer>
+            <p>&copy; 2015 - Paylocity.CodeExam.App</p>
+        </footer>
+    </div>
+</body>
+</html>  
